@@ -2,11 +2,13 @@ const express = require('express');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const User = require('../models/User');
+const logger = require('../logger');
 
 const router = express.Router();
 
-// Rota para registrar um novo usuário
+
 router.post('/register', async (req, res) => {
+    logger.info('Rota de registro (/register) foi acessada')
     const { username, password, role } = req.body;
     try {
         // Hash da senha antes de salvar no banco de dados
@@ -19,8 +21,9 @@ router.post('/register', async (req, res) => {
     }
 });
 
-// Rota para login
+
 router.post('/login', async (req, res) => {
+    logger.info('Rota de login (/login) foi acessada')
     const { username, password } = req.body;
     try {
         const user = await User.findOne({ where: { username } });

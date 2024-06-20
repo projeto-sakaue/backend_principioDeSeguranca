@@ -2,6 +2,7 @@ const express = require('express');
 const sequelize = require('./config/sequelize');
 const authRoutes = require('./routes/authRoutes');
 const userRoutes = require('./routes/userRoutes');
+const logger = require('./logger');
 
 const app = express();
 

@@ -1,10 +1,12 @@
 const express = require('express');
 const verificarToken = require('../middlewares/authMiddleware');
 const User = require('../models/User'); 
+const logger = require('../logger');
 
 const router = express.Router();
 
 router.get('/users', verificarToken, async (req, res) => {
+    logger.info('Rota de buscar usuários (/users) foi acessada')
     try {
         const users = await User.findAll({
             attributes: ['id', 'username', 'role'] 
